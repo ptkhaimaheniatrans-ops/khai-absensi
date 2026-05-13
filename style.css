@@ -168,6 +168,8 @@ body {
 
   position: relative;
 
+  width: 100%;
+
   overflow: hidden;
 
   background:
@@ -476,6 +478,11 @@ h1 {
   flex-direction: column;
 
   margin-bottom: 16px;
+
+  width: 100%;
+
+  overflow: hidden;
+  
 }
 
 label {
@@ -493,6 +500,8 @@ textarea {
 
   width: 100%;
 
+  max-width: 100%;
+
   border: none;
 
   border-radius: 14px;
@@ -509,6 +518,8 @@ textarea {
   outline: none;
 
   transition: 0.2s ease;
+
+  display: block;
 }
 
 input:focus,
@@ -843,5 +854,40 @@ textarea {
 
   opacity: 1 !important;
   visibility: visible !important;
+
+}
+
+/* =========================
+   FIX DATE INPUT MOBILE
+========================= */
+
+input[type="date"] {
+
+  appearance: none;
+  -webkit-appearance: none;
+
+  width: 100%;
+
+  min-width: 0;
+
+  max-width: 100%;
+
+  display: block;
+
+  overflow: hidden;
+
+  position: relative;
+
+}
+
+@media (max-width: 480px) {
+
+  input[type="date"] {
+
+    font-size: 16px;
+
+    padding-right: 10px;
+
+  }
 
 }
