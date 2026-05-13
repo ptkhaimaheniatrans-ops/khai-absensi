@@ -736,3 +736,27 @@ textarea {
   }
 
 }
+
+@media (max-width: 480px) {
+
+  .field {
+
+    width: 100%;
+
+    overflow: hidden;
+  }
+
+  input,
+  textarea,
+  input[type="date"] {
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+    min-width: 0 !important;
+
+    box-sizing: border-box;
+  }
+
+}
