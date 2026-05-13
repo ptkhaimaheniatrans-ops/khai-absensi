@@ -1,0 +1,22 @@
+{
+  "name": "Khai Absensi",
+  "short_name": "Khai",
+  "description": "Dashboard absensi internal Khai",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#e6dcff",
+  "theme_color": "#d8d4ff",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "assets/images/logologo.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/images/logologo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

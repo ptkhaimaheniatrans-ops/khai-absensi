@@ -1,0 +1,840 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family:
+    Arial,
+    sans-serif;
+}
+
+body {
+
+  min-height: 100vh;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e6dcff,
+      #cfe6ff,
+      #ffffff
+    );
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  overflow-x: hidden;
+
+  padding: 20px;
+
+  color: #111;
+}
+
+/* =========================
+   HIDDEN
+========================= */
+
+.hidden {
+  display: none !important;
+}
+
+/* =========================
+   LOADING SCREEN
+========================= */
+
+#loading-screen {
+
+  position: fixed;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      #e6dcff,
+      #cfe6ff,
+      #ffffff
+    );
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999999;
+}
+
+.loading-wrapper {
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 16px;
+}
+
+.loading-logo {
+
+  width: 90px;
+  height: 90px;
+
+  object-fit: contain;
+
+  animation:
+    logoFloat 2s ease-in-out infinite;
+
+  filter:
+    drop-shadow(
+      0 10px 24px rgba(0,0,0,0.14)
+    );
+}
+
+.loading-text {
+
+  font-size: 16px;
+  font-weight: 700;
+
+  color: #111;
+
+  letter-spacing: 1px;
+}
+
+.dot {
+
+  animation:
+    blink 1.5s infinite;
+}
+
+.dot1 {
+  animation-delay: 0s;
+}
+
+.dot2 {
+  animation-delay: 0.2s;
+}
+
+.dot3 {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+}
+
+@keyframes logoFloat {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+}
+
+/* =========================
+   APP
+========================= */
+
+.app {
+
+  width: 100%;
+
+  max-width: 520px;
+}
+
+/* =========================
+   GLASS
+========================= */
+
+.glass {
+
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    rgba(255,255,255,0.45);
+
+  border:
+    1px solid rgba(255,255,255,0.6);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border-radius: 30px;
+
+  padding: 24px;
+
+  box-shadow:
+    0 10px 40px rgba(0,0,0,0.08);
+}
+
+.glass::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  border-radius: 50%;
+
+  top: -100px;
+  right: -100px;
+
+  background:
+    rgba(255,255,255,0.45);
+
+  filter: blur(40px);
+}
+
+/* =========================
+   DASHBOARD LOGO
+========================= */
+
+.dashboard-logo {
+
+  display: flex;
+
+  justify-content: center;
+
+  margin-bottom: 10px;
+}
+
+.dashboard-logo img {
+
+  width: 58px;
+  height: 58px;
+
+  object-fit: contain;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,0.08);
+}
+
+/* =========================
+   MINI CARD
+========================= */
+
+.glass-mini {
+
+  background:
+    rgba(255,255,255,0.35);
+
+  border:
+    1px solid rgba(255,255,255,0.5);
+
+  border-radius: 22px;
+
+  padding: 18px;
+
+  backdrop-filter: blur(16px);
+
+  margin-bottom: 18px;
+}
+
+/* =========================
+   TITLE
+========================= */
+
+h1 {
+
+  text-align: center;
+
+  font-size: 26px;
+  font-weight: 700;
+
+  margin-bottom: 20px;
+
+  color: #111;
+}
+
+/* =========================
+   LIVE CLOCK
+========================= */
+
+.live-clock {
+
+  text-align: center;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  margin-bottom: 18px;
+
+  color: #111;
+}
+
+/* =========================
+   TOTAL CARD
+========================= */
+
+.total-card {
+
+  text-align: center;
+
+  animation:
+    cardFloat 4s ease-in-out infinite;
+}
+
+.total-card span {
+
+  font-size: 14px;
+
+  color: #666;
+}
+
+.total-card h2 {
+
+  font-size: 38px;
+
+  margin-top: 6px;
+
+  color: #111;
+}
+
+@keyframes cardFloat {
+
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.top-buttons {
+
+  display: flex;
+
+  gap: 12px;
+
+  margin-bottom: 24px;
+}
+
+.tab-btn,
+.toggle-btn,
+.submit-btn {
+
+  position: relative;
+
+  overflow: hidden;
+
+  border: none;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,0.95),
+      rgba(255,255,255,0.72)
+    );
+
+  color: #111;
+
+  padding: 14px;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  box-shadow:
+    0 4px 14px rgba(0,0,0,0.06);
+}
+
+.tab-btn:hover,
+.toggle-btn:hover,
+.submit-btn:hover {
+
+  transform: translateY(-2px);
+}
+
+.tab-btn:active,
+.toggle-btn:active,
+.submit-btn:active {
+
+  transform: scale(0.98);
+}
+
+.tab-btn.active,
+.toggle-btn.active {
+
+  background:
+    linear-gradient(
+      135deg,
+      #d9c8ff,
+      #b8dcff
+    );
+
+  box-shadow:
+    0 6px 20px rgba(140,140,255,0.25);
+}
+
+.tab-btn {
+  flex: 1;
+}
+
+.toggle-group {
+
+  display: flex;
+
+  gap: 10px;
+}
+
+.toggle-btn {
+  flex: 1;
+}
+
+.submit-btn {
+
+  width: 100%;
+
+  margin-top: 8px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d9c8ff,
+      #b8dcff
+    );
+}
+
+/* =========================
+   RIPPLE
+========================= */
+
+.ripple {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  transform: scale(0);
+
+  background:
+    rgba(255,255,255,0.8);
+
+  animation:
+    rippleEffect 0.6s linear;
+
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+
+  to {
+
+    transform: scale(4);
+
+    opacity: 0;
+  }
+
+}
+
+/* =========================
+   FORM
+========================= */
+
+.field {
+
+  display: flex;
+  flex-direction: column;
+
+  margin-bottom: 16px;
+}
+
+label {
+
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  color: #111;
+}
+
+input,
+textarea {
+
+  width: 100%;
+
+  border: none;
+
+  border-radius: 14px;
+
+  padding: 14px;
+
+  background:
+    rgba(255,255,255,0.88);
+
+  color: #111;
+
+  font-size: 15px;
+
+  outline: none;
+
+  transition: 0.2s ease;
+}
+
+input:focus,
+textarea:focus {
+
+  transform: scale(1.01);
+
+  box-shadow:
+    0 0 0 3px rgba(180,210,255,0.35);
+}
+
+input::placeholder,
+textarea::placeholder {
+
+  color: #8f8f8f;
+}
+
+textarea {
+
+  min-height: 110px;
+
+  resize: none;
+}
+
+/* =========================
+   MINI POPUP
+========================= */
+
+.mini-popup {
+
+  position: fixed;
+
+  top: 28px;
+  right: 28px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 14px 18px;
+
+  border-radius: 18px;
+
+  backdrop-filter: blur(18px);
+
+  background:
+    rgba(255,255,255,0.92);
+
+  border:
+    1px solid rgba(255,255,255,0.7);
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.12);
+
+  z-index: 999999;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  opacity: 0;
+
+  transform:
+    translateY(-20px);
+
+  transition: 0.3s ease;
+}
+
+.mini-popup.show {
+
+  opacity: 1;
+
+  transform:
+    translateY(0);
+}
+
+.mini-popup.success {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(220,255,235,0.95),
+      rgba(255,255,255,0.95)
+    );
+}
+
+.mini-popup.error {
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,220,220,0.95),
+      rgba(255,255,255,0.95)
+    );
+}
+
+/* =========================
+   LOG
+========================= */
+
+.log-container {
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.log-header,
+.log-item {
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr
+    70px;
+
+  gap: 10px;
+
+  align-items: center;
+
+  padding: 12px;
+
+  border-radius: 16px;
+
+  font-size: 13px;
+}
+
+.log-header {
+
+  background:
+    rgba(255,255,255,0.58);
+
+  font-weight: 700;
+}
+
+.log-item {
+
+  background:
+    rgba(255,255,255,0.38);
+
+  animation:
+    swipeFade 0.3s ease;
+}
+
+@keyframes swipeFade {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateX(14px);
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateX(0px);
+  }
+
+}
+
+/* =========================
+   DRIVER
+========================= */
+
+.driver-wrap {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+.driver-avatar {
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 50%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #d8d4ff,
+      #b8d9ff
+    );
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* =========================
+   SKELETON
+========================= */
+
+.skeleton {
+
+  width: 100%;
+
+  height: 58px;
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255,255,255,0.28),
+      rgba(255,255,255,0.60),
+      rgba(255,255,255,0.28)
+    );
+
+  background-size: 200% 100%;
+
+  animation:
+    skeletonMove 1.2s infinite linear;
+}
+
+@keyframes skeletonMove {
+
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+  body {
+
+    padding: 14px;
+  }
+
+  .glass {
+
+    padding: 18px;
+
+    border-radius: 24px;
+  }
+
+  h1 {
+
+    font-size: 22px;
+  }
+
+  .live-clock {
+
+    font-size: 24px;
+  }
+
+  .total-card h2 {
+
+    font-size: 32px;
+  }
+
+  .dashboard-logo img {
+
+    width: 50px;
+    height: 50px;
+  }
+
+  .tab-btn,
+  .toggle-btn,
+  .submit-btn {
+
+    font-size: 14px;
+
+    padding: 13px;
+  }
+
+  input,
+  textarea {
+
+    font-size: 14px;
+
+    padding: 13px;
+  }
+
+  .log-header,
+  .log-item {
+
+    font-size: 11px;
+
+    padding: 10px;
+  }
+
+  .mini-popup {
+
+    right: 14px;
+    left: 14px;
+
+    top: 18px;
+
+    justify-content: center;
+  }
+
+}
+
+<!-- CSS -->
+<link
+  rel="stylesheet"
+  href="style.css"
+/>
+
+<!-- MANIFEST -->
+<link
+  rel="manifest"
+  href="manifest.json"
+/>

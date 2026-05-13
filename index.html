@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <meta
+    name="theme-color"
+    content="#d8d4ff"
+  />
+
+  <title>Khai Absensi</title>
+
+  <!-- =========================
+       FAVICON
+  ========================== -->
+
+  <link
+    rel="icon"
+    type="image/png"
+    href="assets/images/logologo.png"
+  />
+
+  <!-- =========================
+       CSS
+  ========================== -->
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  />
+
+  <!-- =========================
+       MANIFEST
+  ========================== -->
+
+  <link
+    rel="manifest"
+    href="manifest.json"
+  />
+
+  <!-- =========================
+       FIREBASE
+  ========================== -->
+
+  <script type="module">
+
+    import {
+      initializeApp
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      query,
+      orderBy,
+      onSnapshot,
+      limit
+    } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+    const firebaseConfig = {
+
+      apiKey:
+        "AIzaSyAhL_5-NhsAoFyYFeKCHO8sE6AnWX0WJSE",
+
+      authDomain:
+        "khai-absensi.firebaseapp.com",
+
+      projectId:
+        "khai-absensi",
+
+      storageBucket:
+        "khai-absensi.appspot.com",
+
+      messagingSenderId:
+        "1067230668614",
+
+      appId:
+        "1:1067230668614:web:a645be221ba0e70ad8a747"
+
+    };
+
+    /* =========================
+       FIREBASE INIT
+    ========================== */
+
+    const firebaseApp =
+      initializeApp(firebaseConfig);
+
+    const db =
+      getFirestore(firebaseApp);
+
+    /* =========================
+       GLOBAL FIREBASE
+    ========================== */
+
+    window.firebaseDB = db;
+
+    window.firebaseCollection =
+      collection;
+
+    window.firebaseAddDoc =
+      addDoc;
+
+    window.firebaseQuery =
+      query;
+
+    window.firebaseOrderBy =
+      orderBy;
+
+    window.firebaseOnSnapshot =
+      onSnapshot;
+
+    window.firebaseLimit =
+      limit;
+
+  </script>
+
+</head>
+
+<body>
+
+  <!-- =========================
+       LOADING SCREEN
+  ========================== -->
+
+  <div id="loading-screen">
+
+    <div class="loading-wrapper">
+
+      <img
+        src="assets/images/logologo.png"
+        class="loading-logo"
+        alt="Khai Absensi Logo"
+      />
+
+      <div class="loading-text">
+
+        <span class="loading-word">
+          Loading
+        </span>
+
+        <span class="dot dot1">.</span>
+        <span class="dot dot2">.</span>
+        <span class="dot dot3">.</span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- =========================
+       AUDIO
+  ========================== -->
+
+  <audio
+    id="clickSound"
+    src="assets/sounds/clicktone.mp3"
+  ></audio>
+
+  <audio
+    id="successSound"
+    src="assets/sounds/successtone.mp3"
+  ></audio>
+
+  <audio
+    id="errorSound"
+    src="assets/sounds/errortone.mp3"
+  ></audio>
+
+  <!-- =========================
+       MAIN APP
+  ========================== -->
+
+  <div
+    class="app hidden"
+    id="app"
+  >
+
+    <div class="dashboard glass">
+
+      <!-- =========================
+           DASHBOARD LOGO
+      ========================== -->
+
+      <div class="dashboard-logo">
+
+        <img
+          src="assets/images/logologo.png"
+          alt="Dashboard Logo"
+        />
+
+      </div>
+
+      <!-- =========================
+           TITLE
+      ========================== -->
+
+      <h1>
+        Khai Absensi
+      </h1>
+
+      <!-- =========================
+           LIVE CLOCK
+      ========================== -->
+
+      <div
+        class="live-clock"
+        id="liveClock"
+      >
+        00:00:00
+      </div>
+
+      <!-- =========================
+           TOTAL ENTRY
+      ========================== -->
+
+      <div class="total-card glass-mini">
+
+        <span>Total Today</span>
+
+        <h2 id="totalEntry">
+          0
+        </h2>
+
+      </div>
+
+      <!-- =========================
+           TOP BUTTONS
+      ========================== -->
+
+      <div class="top-buttons">
+
+        <button
+          class="tab-btn active"
+          id="submitTab"
+          type="button"
+        >
+          Submit Form
+        </button>
+
+        <button
+          class="tab-btn"
+          id="logTab"
+          type="button"
+        >
+          Today Log
+        </button>
+
+      </div>
+
+      <!-- =========================
+           MINI POPUP
+      ========================== -->
+
+      <div
+        id="miniPopup"
+        class="mini-popup hidden"
+      >
+
+        <span id="miniPopupIcon">
+          ✅
+        </span>
+
+        <span id="miniPopupText">
+          Success!
+        </span>
+
+      </div>
+
+      <!-- =========================
+           SUBMIT PAGE
+      ========================== -->
+
+      <div id="submitPage">
+
+        <form
+          id="attendanceForm"
+          autocomplete="off"
+        >
+
+          <!-- DRIVER -->
+
+          <div class="field">
+
+            <label for="driver">
+              Driver
+            </label>
+
+            <input
+              list="driverList"
+              id="driver"
+              name="driver"
+              placeholder="Choose or type"
+              required
+            />
+
+            <datalist id="driverList">
+
+              <option value="Malik"></option>
+              <option value="Johan"></option>
+              <option value="Dudi"></option>
+              <option value="Iwan"></option>
+              <option value="Teddy"></option>
+              <option value="Kholik"></option>
+              <option value="Seno"></option>
+              <option value="Cahya"></option>
+              <option value="Uuz"></option>
+
+            </datalist>
+
+          </div>
+
+          <!-- DATE -->
+
+          <div class="field">
+
+            <label for="date">
+              Date
+            </label>
+
+            <input
+              type="date"
+              id="date"
+              name="date"
+              required
+            />
+
+          </div>
+
+          <!-- UNIT -->
+
+          <div class="field">
+
+            <label for="unit">
+              Unit
+            </label>
+
+            <input
+              list="unitList"
+              id="unit"
+              name="unit"
+              placeholder="Choose or type"
+              required
+            />
+
+            <datalist id="unitList">
+
+              <option value="Toyota Avanza DYK"></option>
+              <option value="Daihatsu Xenia ROK | FAU"></option>
+              <option value="Honda RBV BZO"></option>
+              <option value="Veloz DFJ"></option>
+              <option value="Stargazer DYK"></option>
+              <option value="Innova Reborn PKA | FAP"></option>
+              <option value="Innova Reborn DYL"></option>
+              <option value="Innova Zenix 89 WIS"></option>
+              <option value="Innova Zenix 50 WIS"></option>
+              <option value="Innova Zenix Hybrid 95 NFJ"></option>
+              <option value="Innova Zenix Hybrid 80 KRM"></option>
+
+            </datalist>
+
+          </div>
+
+          <!-- JOB -->
+
+          <div class="field">
+
+            <label>
+              Job
+            </label>
+
+            <input
+              type="hidden"
+              id="job"
+              name="job"
+              value="Office"
+            />
+
+            <div class="toggle-group">
+
+              <button
+                type="button"
+                class="toggle-btn active"
+                data-job="Office"
+              >
+                Office
+              </button>
+
+              <button
+                type="button"
+                class="toggle-btn"
+                data-job="Personal"
+              >
+                Personal
+              </button>
+
+            </div>
+
+          </div>
+
+          <!-- PO -->
+
+          <div class="field">
+
+            <label for="po">
+              PO
+            </label>
+
+            <input
+              list="poList"
+              id="po"
+              name="po"
+              placeholder="Choose or type"
+              required
+            />
+
+            <datalist id="poList">
+
+              <option value="Khai"></option>
+              <option value="Seto"></option>
+
+            </datalist>
+
+          </div>
+
+          <!-- USER -->
+
+          <div class="field">
+
+            <label for="user">
+              User
+            </label>
+
+            <input
+              list="userList"
+              id="user"
+              name="user"
+              placeholder="Choose or type"
+              required
+            />
+
+            <datalist id="userList">
+
+              <option value="Kantor"></option>
+              <option value="Mitra Tours & Travel"></option>
+              <option value="Nadesco Indonesia"></option>
+              <option value="TKE Elevator Indonesia"></option>
+              <option value="PT. Seven Gates Indonesia"></option>
+              <option value="SKC Law"></option>
+
+            </datalist>
+
+          </div>
+
+          <!-- DESTINATION -->
+
+          <div class="field">
+
+            <label for="destination">
+              Destination
+            </label>
+
+            <input
+              list="destinationList"
+              id="destination"
+              name="destination"
+              placeholder="Choose or type"
+              required
+            />
+
+            <datalist id="destinationList">
+
+              <option value="Dalam Kota"></option>
+              <option value="Bandung"></option>
+
+            </datalist>
+
+          </div>
+
+          <!-- DURATION -->
+
+          <div class="field">
+
+            <label for="duration">
+              Duration
+            </label>
+
+            <input
+              list="durationList"
+              id="duration"
+              name="duration"
+              placeholder="Choose or type"
+              required
+            />
+
+            <datalist id="durationList">
+
+              <option value="Drop Only"></option>
+              <option value="6 Jam"></option>
+              <option value="12 Jam"></option>
+              <option value="Fullday"></option>
+
+            </datalist>
+
+          </div>
+
+          <!-- NOTES -->
+
+          <div class="field">
+
+            <label for="notes">
+              Notes
+            </label>
+
+            <textarea
+              id="notes"
+              name="notes"
+              placeholder="Type detail"
+            ></textarea>
+
+          </div>
+
+          <!-- SUBMIT -->
+
+          <button
+            type="submit"
+            class="submit-btn"
+          >
+            Submit
+          </button>
+
+        </form>
+
+      </div>
+
+      <!-- =========================
+           TODAY LOG PAGE
+      ========================== -->
+
+      <div
+        id="logPage"
+        class="hidden"
+      >
+
+        <div class="log-container">
+
+          <!-- LOG HEADER -->
+
+          <div class="log-header">
+
+            <span>Driver</span>
+
+            <span>Date</span>
+
+            <span>Unit</span>
+
+            <span>Entry</span>
+
+          </div>
+
+          <!-- DYNAMIC LOG -->
+
+          <div id="logList"></div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- =========================
+       MAIN JS
+  ========================== -->
+
+  <script
+    src="script.js"
+    defer
+  ></script>
+
+  <!-- =========================
+       SERVICE WORKER
+  ========================== -->
+
+  <script>
+
+    if (
+      "serviceWorker" in navigator
+    ) {
+
+      window.addEventListener(
+        "load",
+        () => {
+
+          navigator.serviceWorker.register(
+            "./service-worker.js"
+          )
+
+          .then(() => {
+
+            console.log(
+              "Service Worker Registered"
+            );
+
+          })
+
+          .catch((error) => {
+
+            console.log(
+              "Service Worker Failed",
+              error
+            );
+
+          });
+
+        }
+      );
+
+    }
+
+  </script>
+
+</body>
+
+</html>
