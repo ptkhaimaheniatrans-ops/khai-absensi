@@ -839,18 +839,6 @@ textarea {
 
 }
 
-<!-- CSS -->
-<link
-  rel="stylesheet"
-  href="style.css"
-/>
-
-<!-- MANIFEST -->
-<link
-  rel="manifest"
-  href="manifest.json"
-/>
-
 #loading-screen img {
 
   opacity: 1 !important;
