@@ -78,8 +78,8 @@ body {
 
 .loading-logo {
 
-  width: 90px;
-  height: 90px;
+  width: 72px;
+  height: 72px;
 
   object-fit: contain;
 
@@ -88,7 +88,7 @@ body {
 
   filter:
     drop-shadow(
-      0 10px 24px rgba(0,0,0,0.14)
+      0 8px 20px rgba(0,0,0,0.12)
     );
 }
 
