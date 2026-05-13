@@ -1,5 +1,5 @@
 const CACHE_NAME =
-  "khai-absensi-v1";
+  "khai-absensi-v2";
 
 const urlsToCache = [
 
